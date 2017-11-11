@@ -1,0 +1,19 @@
+private String procesarFolioInvertido(String folio) {
+  String folioSinCeros = "";
+  boolean bandera = true;
+  char[] toCharArray = folio.toCharArray();
+  for (int i = 0; i < folio.length(); i++) {
+    char caracter = toCharArray[i];
+    if (Character.isDigit(caracter)) {
+      if (caracter != '0') {
+        folioSinCeros += caracter;
+        bandera = false;
+      } else if (!bandera) {
+        folioSinCeros += caracter;
+        }
+      } else {
+        folioSinCeros += caracter;
+    }
+  folioSinCeros = folioSinCeros.toUpperCase();
+  return folioSinCeros;
+}
