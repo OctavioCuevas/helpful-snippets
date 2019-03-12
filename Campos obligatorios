@@ -1,0 +1,33 @@
+  private boolean camposCompletos(JPanel pnl) {
+        boolean correcto = true;
+        for (Component component : pnl.getComponents()) {
+            if ("Obligatorio".equals(
+                    component.getAccessibleContext().getAccessibleName())) {
+                if (component instanceof JTextField) {
+                    if ("".equals(((JTextField) component).getText())) {
+                        correcto = false;
+                    }
+                }
+                if (component instanceof JComboBox) {
+                    if (((JComboBox) component).getSelectedItem() == null) {
+                        correcto = false;
+                    }
+                }
+                if (component instanceof JDateChooser) {
+                    if (((JDateChooser) component).getDate() == null) {
+                        correcto = false;
+                    }
+                }
+                if (!correcto) {
+                    JOptionPane.showMessageDialog(this,
+                            "El campo \"" + component.getName()
+                            + "\" es obligatorio.",
+                            "Información incorrecta",
+                            JOptionPane.WARNING_MESSAGE);
+                    component.requestFocusInWindow();
+                    break;
+                }
+            }
+        }
+        return correcto;
+    }
