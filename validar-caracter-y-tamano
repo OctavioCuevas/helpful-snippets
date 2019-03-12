@@ -1,0 +1,6 @@
+private void txtCPTitularKeyTyped(KeyEvent evt) {                                      
+    if (txtCPTitular.getText().length() >= 5 
+            || !Character.isLetter(evt.getKeyChar()) && (evt.getKeyChar() != ' ')) {
+        evt.consume();
+    }
+} 

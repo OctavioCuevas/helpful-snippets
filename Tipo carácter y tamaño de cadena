@@ -1,4 +1,0 @@
-char c = ke.getKeyChar();
-if (txtNombre.getText().length() == 30 || !Character.isLetter(ke.getKeyChar()) && (c != ' ')) {
-    ke.consume();
-}
