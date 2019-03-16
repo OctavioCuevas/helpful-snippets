@@ -1,0 +1,15 @@
+SetQuery(
+    'SELECT A.campo1, A.campo2 ' +
+    'FROM tabla A ' +
+    'WHERE A.campo3 = :PARAMETRO ' +
+    'AND A.campo4 = ''X'' ' +
+    'GROUP BY A.campo1');
+  SetParamValue('PARAMETRO', CONSULTA['CAMPO']);
+  OpenQuery;
+  while (not Eof) do
+  begin
+      memoFormasCobro.Lines.Add(GetFieldAsString('CAMPO1'));
+      memoImportes.Lines.Add(GetFieldAsString('CAMPO2'));
+    Next;
+  end;
+  CloseQuery;
