@@ -1,0 +1,18 @@
+public void modificarBlob(String texto) {
+  /*
+    Método que sirve para insertar desde Java un texto con saltos de linea
+    en un campo Blob de la base de datos
+  */  
+  politicas = politicas.replace("\n", "' || ASCII_CHAR(13) || '");
+  try {
+      conectarBD();
+      Statement stmt = Conn.createStatement();
+      stmt.executeUpdate("UPDATE tabla SET campo = '" + texto + "'");
+      desconectarBD();
+  } catch (SQLException e) {
+      JOptionPane.showMessageDialog(null, e.getMessage(),
+              "Error al modificar blob", 
+              JOptionPane.ERROR_MESSAGE);
+      desconectarBD();
+  }
+}
