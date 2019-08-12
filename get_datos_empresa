@@ -1,0 +1,13 @@
+    //Obtenemos la ip publica
+    public String getIPPublica() {
+        try {
+            URL whatismyip = new URL("http://checkip.amazonaws.com");
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                    whatismyip.openStream()));
+            return in.readLine();
+        } catch (java.io.IOException ex) {
+            return null;
+        }
+    }
+    
+    
