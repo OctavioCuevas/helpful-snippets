@@ -1,0 +1,16 @@
+private String eliminarComilla(String nombreStr) {
+        String nombreFinal = "";
+        for (String letter : nombreStr.split("'")) {
+            if ("".equals(nombreFinal)) {
+                nombreFinal = nombreFinal + letter + "''";
+            } else {
+                nombreFinal = nombreFinal + letter;
+            }
+        }
+        if (nombreFinal.length() == nombreStr.length() + 2) {
+            for (String letter : nombreFinal.split("''")) {
+                nombreFinal = letter;
+            }
+        }
+        return nombreFinal;
+    }
