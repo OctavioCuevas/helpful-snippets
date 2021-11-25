@@ -1,0 +1,230 @@
+/**
+   *
+   * @param object
+   * @return
+   */
+  public static String encrypt(Object object) {
+    String str = object.toString();
+    Random randomF = new Random();
+    Random randomB = new Random();
+    int lenght = str.length();
+    int toComplete = 0;
+    if (lenght < 4) {
+      toComplete = 4;
+    } else if (lenght < 8) {
+      toComplete = 8;
+    } else if (lenght < 12) {
+      toComplete = 12;
+    } else if (lenght < 16) {
+      toComplete = 16;
+    } else if (lenght < 20) {
+      toComplete = 20;
+    } else if (lenght < 24) {
+      toComplete = 24;
+    } else if (lenght < 28) {
+      toComplete = 28;
+    } else if (lenght < 32) {
+      toComplete = 32;
+    } else if (lenght < 36) {
+      toComplete = 36;
+    } else if (lenght < 40) {
+      toComplete = 40;
+    } else if (lenght < 44) {
+      toComplete = 44;
+    } else if (lenght < 48) {
+      toComplete = 48;
+    } else if (lenght < 52) {
+      toComplete = 52;
+    } else if (lenght < 56) {
+      toComplete = 56;
+    } else if (lenght < 60) {
+      toComplete = 60;
+    } else if (lenght < 64) {
+      toComplete = 64;
+    } else if (lenght < 68) {
+      toComplete = 68;
+    } else if (lenght < 72) {
+      toComplete = 72;
+    } else if (lenght < 76) {
+      toComplete = 76;
+    } else if (lenght < 80) {
+      toComplete = 80;
+    }
+    if (toComplete > 0) {
+      for (int i = lenght; i < toComplete; i++) {
+        str += "~";
+      }
+    }
+    String half_1 = str.substring(0, str.length() / 2);
+    String quarter_1 = half_1.substring(0, half_1.length() / 2);
+    String quarter_2 = half_1.substring(half_1.length() / 2);
+    String half_2 = str.substring(str.length() / 2);
+    String quarter_3 = half_2.substring(0, half_2.length() / 2);
+    String quarter_4 = half_2.substring(half_2.length() / 2);
+    str = quarter_3 + quarter_2 + quarter_4 + quarter_1;
+    char[] str_array = str.toCharArray();
+    String new_str = "";
+    for (int i = 0; i < str_array.length; i++) {
+      if (Character.isLetter(str_array[i])) {
+        switch (str_array[i]) {
+          case 'A':
+            new_str += "&a"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'E':
+            new_str += "&e"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'I':
+            new_str += "&i"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'O':
+            new_str += "&o"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'U':
+            new_str += "&u"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'a':
+            new_str += "$A"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'e':
+            new_str += "$E"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'i':
+            new_str += "$I"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'o':
+            new_str += "$O"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          case 'u':
+            new_str += "$U"
+                    + source.charAt(randomF.nextInt(source.length()))
+                    + source.charAt(randomF.nextInt(source.length()));
+            break;
+          default:
+            new_str += "!" + str_array[i];
+            break;
+        }
+      } else if (Character.isDigit(str_array[i])) {
+        int digit = Integer.parseInt(String.valueOf(str_array[i]));
+        if (digit > 4) {
+          digit -= 2;
+          new_str += ">"
+                  + source.charAt(randomF.nextInt(source.length()))
+                  + digit
+                  + source.charAt(randomF.nextInt(source.length()));
+        } else {
+          digit += 3;
+          new_str += "<"
+                  + source.charAt(randomF.nextInt(source.length()))
+                  + digit
+                  + source.charAt(randomF.nextInt(source.length()));
+        }
+      } else {
+        new_str += "%" + str_array[i];
+      }
+    }
+    String first_part = new_str.substring(0, new_str.length() / 2);
+    String second_part = new_str.substring(new_str.length() / 2);
+    String temp = "";
+    char[] temp_array = first_part.toCharArray();
+    for (int i = first_part.length() - 1; i >= 0; i--) {
+      temp += temp_array[i];
+    }
+    first_part = temp;
+    temp = "";
+    temp_array = second_part.toCharArray();
+    for (int i = second_part.length() - 1; i >= 0; i--) {
+      temp += temp_array[i];
+    }
+    second_part = temp;
+    return "[" + base.charAt(
+            randomB.nextInt(base.length())) + ""
+            + source.charAt(randomF.nextInt(source.length())) + ""
+            + source.charAt(randomF.nextInt(source.length())) + ""
+            + source.charAt(randomF.nextInt(source.length()))
+            + first_part + second_part
+            + base.charAt(randomB.nextInt(base.length())) + ""
+            + source.charAt(randomF.nextInt(source.length())) + "]";
+  }
+
+  /**
+   *
+   * @param str
+   * @return
+   */
+  public static String decrypt(String str) {
+    String first_part = str.substring(5, (str.length() / 2) + 1);
+    String second_part = str.substring((str.length() / 2) + 1, str.length() - 3);
+    String temp = "";
+    char[] temp_array = first_part.toCharArray();
+    for (int i = first_part.length() - 1; i >= 0; i--) {
+      temp += temp_array[i];
+    }
+    first_part = temp;
+    temp = "";
+    temp_array = second_part.toCharArray();
+    for (int i = second_part.length() - 1; i >= 0; i--) {
+      temp += temp_array[i];
+    }
+    second_part = temp;
+    String string = first_part + second_part;
+    char[] str_array = string.toCharArray();
+    String new_str = "";
+    for (int i = 0; i < str_array.length; i++) {
+      switch (str_array[i]) {
+        case '&':
+          i++;
+          new_str += String.valueOf(str_array[i]).toUpperCase();
+          i = i + 2;
+          break;
+        case '$':
+          i++;
+          new_str += String.valueOf(str_array[i]).toLowerCase();
+          i = i + 2;
+          break;
+        case '>':
+          i = i + 2;
+          new_str += Integer.parseInt(String.valueOf(str_array[i])) + 2;
+          i++;
+          break;
+        case '<':
+          i = i + 2;
+          new_str += Integer.parseInt(String.valueOf(str_array[i])) + -3;
+          i++;
+          break;
+        default:
+          i++;
+          new_str += str_array[i];
+          break;
+      }
+    }
+    String half_1 = new_str.substring(0, new_str.length() / 2);
+    String quarter_1 = half_1.substring(0, half_1.length() / 2);
+    String quarter_2 = half_1.substring(half_1.length() / 2);
+    String half_2 = new_str.substring(new_str.length() / 2);
+    String quarter_3 = half_2.substring(0, half_2.length() / 2);
+    String quarter_4 = half_2.substring(half_2.length() / 2);
+    new_str = quarter_4 + quarter_2 + quarter_1 + quarter_3;
+    if (new_str.contains("~")) {
+      return new_str.replace("~", "");
+    } else {
+      return new_str;
+    }
+  }
