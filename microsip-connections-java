@@ -1,0 +1,44 @@
+  private final List<String> list_conn_names = new ArrayList<>(),
+          list_conn_addrs = new ArrayList<>(),
+          list_conn_folders = new ArrayList<>();
+
+  private void read_connections() {
+    try {
+      File xml = new File("C:\\ProgramData\\Microsip\\ProgramData.xml");
+      DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+      DocumentBuilder documentBuilder = dbf.newDocumentBuilder();
+      Document document = documentBuilder.parse(xml);
+      document.getDocumentElement().normalize();
+      NodeList conn = document.getElementsByTagName("Conexiones");
+      for (int temp = 0; temp < conn.getLength(); temp++) {
+        Node nodo = conn.item(temp);
+        NodeList list_conn = nodo.getChildNodes();
+        for (int temp2 = 0; temp2 < list_conn.getLength(); temp2++) {
+          Node nodoHijo = list_conn.item(temp2);
+          if (!nodoHijo.getNodeName().contains("#")) {
+            list_conn_names.add(nodoHijo.getNodeName());
+            NodeList conn_data
+                    = document.getElementsByTagName(nodoHijo.getNodeName());
+            for (int temp3 = 0; temp3 < conn.getLength(); temp3++) {
+              Node nodoNieto = conn_data.item(temp3);
+              if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) nodoNieto;
+                String server = element.getElementsByTagName(
+                          "Nombre_del_servidor").item(0).getTextContent();
+                if ("".equals(server)) {
+                  list_conn_addrs.add("localhost");
+                } else {
+                  list_conn_addrs.add(server);
+                }
+                list_conn_folders.add(element.getElementsByTagName(
+                        "Directorio_de_datos").item(0).getTextContent());
+              }
+            }
+          }
+        }
+      }
+    } catch (IOException | ParserConfigurationException | DOMException | SAXException e) {
+      JOptionPane.showMessageDialog(null, "Error reading connections",
+              "Error", JOptionPane.ERROR_MESSAGE);
+    }
+  }
