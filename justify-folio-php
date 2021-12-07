@@ -1,4 +1,5 @@
-function justify_folio($folio) {
+<?php
+  function justify_folio($folio) {
     $numbers = "";
     $letters = "";
     $array = str_split($folio,1);
@@ -54,3 +55,4 @@ function justify_folio($folio) {
     }
     return $whitout_zero;
   }
+?>
